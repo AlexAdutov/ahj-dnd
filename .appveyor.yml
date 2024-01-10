@@ -19,6 +19,7 @@ build_script:
   - npm run build   # команда сборки
 
 test_script:
+  - npm install
   - npx eslint . --fix
   - npm test
   - echo "Finished testing"
