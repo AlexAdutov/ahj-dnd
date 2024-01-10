@@ -1,32 +1,25 @@
-image: Ubuntu1804  # образ для сборки
+image: Ubuntu1804 # образ для сборки
 
-stack: node 16  # окружение
+stack: node 16 # окружение
 
 branches:
   only:
-    - master  # ветка git
+    - main # ветка git
 
-cache:
-  - node_modules  # кеширование
+cache: node_modules # кеширование
 
 install:
-  - npm install -g eslint eslint-config-airbnb-base eslint-plugin-import
-  - npm install eslint-config-airbnb-base eslint-plugin-import@latest --save-dev
-  - npm install
-  - npm ci
+  - npm install # команда установки зависимостей
 
-build: off  # отключаем встроенную в appveyor систему сборки
+build: off # отключаем встроенную в appveyor систему сборки
 
 build_script:
-  - npm run build   # команда сборки
+  - npm run build # команда сборки
 
 test_script:
-  - npx eslint . --fix
-  - npm audit fix --force
-  - npm test
-  - echo "Finished testing"
+  - npm run lint && npm test # скрипт тестирования
 
-deploy_script:  # скрипт развёртывания
+deploy_script: # скрипт развёртывания
   - git config --global credential.helper store
   - git config --global user.name AppVeyor
   - git config --global user.email ci@appveyor.com
