@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/4avag2x86mep8v17/branch/main?svg=true)](https://ci.appveyor.com/project/AlexAdutov/ahj-forms/branch/main)
+
 # Домашнее задание к занятию "6. Работа с файлами, DnD"
 
 Правила сдачи задания:
