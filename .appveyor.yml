@@ -4,16 +4,14 @@ stack: node 16  # окружение
 
 branches:
   only:
-    - master  # ветка git
+    - main  # ветка git
 
-cache: node_modules  # кеширование
+cache:
+  directories:
+    - node_modules  # кеширование
 
 install:
-  - npm install eslint-config-airbnb-base eslint-plugin-import@latest --save-dev
-  - npm install
   - npm ci
-
-
 
 build: off  # отключаем встроенную в appveyor систему сборки
 
