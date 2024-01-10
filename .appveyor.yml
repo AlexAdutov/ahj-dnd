@@ -10,6 +10,7 @@ cache: node_modules  # кеширование
 
 install:
   - npm install -g eslint eslint-config-airbnb-base eslint-plugin-import
+  - npm install eslint-config-airbnb-base eslint-plugin-import@latest --save-dev
   - npm install
 
 build: off  # отключаем встроенную в appveyor систему сборки
@@ -18,7 +19,7 @@ build_script:
   - npm run build   # команда сборки
 
 test_script:
-  - eslint . --fix
+  - npx eslint . --fix
   - npm test
   - echo "Finished testing"
 
