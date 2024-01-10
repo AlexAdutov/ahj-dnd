@@ -2,6 +2,7 @@ src/documentation
 .documentation
 dist
 doc
+.idea
 
 # Logs
 logs
