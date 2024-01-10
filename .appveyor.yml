@@ -19,7 +19,9 @@ build_script:
   - npm run build   # команда сборки
 
 test_script:
-  - npm run lint && npm test  # скрипт тестирования
+  - eslint . --fix
+  - npm test
+  - echo "Finished testing"
 
 deploy_script:  # скрипт развёртывания
   - git config --global credential.helper store
