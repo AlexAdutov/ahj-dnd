@@ -7,8 +7,7 @@ branches:
     - master  # ветка git
 
 cache:
-  directories:
-    - node_modules  # кеширование
+  - node_modules  # кеширование
 
 install:
   - npm install -g eslint eslint-config-airbnb-base eslint-plugin-import
