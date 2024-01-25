@@ -1,3 +1,4 @@
+// Экспортируем класс DOM
 export default class DOM {
   constructor(classContainer, svgCollection) {
     this.container = document.querySelector(`.${classContainer}`); // Контейнер с секциями
@@ -5,12 +6,15 @@ export default class DOM {
     this.arrStandatrtSect = ['To do', 'In progress', 'Done']; // Массив стандарнтых секций
   }
 
+  // Метод инициализации DOM
   init() {
+    // Создаем и добавляем стандартные секции в контейнер
     this.arrStandatrtSect.forEach((title) => {
       const section = this.createSection(title);
       this.container.append(section);
     });
 
+    // Инициализируем слушатели событий
     this.initListener();
   }
 
@@ -18,16 +22,19 @@ export default class DOM {
   * Метод инициализации изначальных слушателей
   */
   initListener() {
+    // Получаем и добавляем слушатели для кнопок добавления задач в футере каждой секции
     const footerBntAdd = Array.from(document.querySelectorAll('.task-section__footer-button_add'));
     footerBntAdd.forEach((addButton) => {
       this.addListener(addButton, 'click', this.footerBntHandler);
     });
 
+    // Получаем и добавляем слушатели для input-элементов в футере каждой секции
     const inputImg = Array.from(document.querySelectorAll('.task-section__footer-input'));
     inputImg.forEach((input) => {
       this.addListener(input, 'change', this.inputImgHandler);
     });
 
+    // Создаем кнопку добавления новой секции и добавляем ей слушатель события
     const addSectionButton = this.createAddSectionButton();
     this.addListener(addSectionButton, 'click', this.addSectionButtonHandler);
   }
@@ -39,8 +46,10 @@ export default class DOM {
   */
   createObj(section) {
     this.name = 'createObj';
+    // Получаем все задачи в текущей секции
     const tasks = Array.from(section.querySelectorAll('.task'));
 
+    // Создаем массив объектов для каждой задачи
     const tasksArr = tasks.map((task) => {
       const obj = {};
       obj.className = task.classList.value;
@@ -48,6 +57,7 @@ export default class DOM {
       return obj;
     });
 
+    // Формируем объект секции
     const obj = {
       classSect: section.classList.value,
       titleSect: section.querySelector('.task-section__title').textContent,
@@ -62,8 +72,10 @@ export default class DOM {
   * в localStorage
   */
   getData() {
+    // Получаем все секции на странице
     const sections = Array.from(document.querySelectorAll('.task-section'));
 
+    // Создаем массив объектов для каждой секции
     const arrSection = sections.map((section) => {
       const obj = this.createObj(section);
       return obj;
@@ -76,6 +88,7 @@ export default class DOM {
   * Метод отображения информации, хранящейся в локальном хранилище
   */
   displayData(arrData) {
+    // Проходим по массиву объектов и создаем секции с задачами
     arrData.forEach((sectionObj) => {
       const section = this.createSection(sectionObj.titleSect, sectionObj.classSect);
 
